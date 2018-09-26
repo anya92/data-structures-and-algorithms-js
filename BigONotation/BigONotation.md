@@ -2,7 +2,7 @@
 
 **Big O Notation** is used to classify algorithms according to how their running **time** or **space** requirements grow as the input size grows.
 
-<img src="./BigONotation.jpg" alt="big-O-notation" style="width: 500px; margin: 20px auto;">
+<img src="./BigONotation.jpg" alt="big-O-notation" />
 
 
 | Notation         | Type          | Description |
