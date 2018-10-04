@@ -1,6 +1,6 @@
 /*
-  Searching
-  - given an array, the simplest way to search for an value is to look at every element in the array and check if it's the value we want.
+  Linear Search
+  - is a method for finding a target value within a list (array). It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched
   - in JavaScript: indexOf, includes, find, findIndex
 */
 
