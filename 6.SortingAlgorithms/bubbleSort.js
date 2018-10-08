@@ -4,7 +4,7 @@
   - is named for the way smaller or larger elements "bubble" to the top of the list
 */
 
-function bubbleSort(arr) {
+function bubbleSort(arr) { // optimized version
   function swap(arr, ind1, ind2) {
     let temp = arr[ind1];
     arr[ind1] = arr[ind2];
@@ -16,12 +16,15 @@ function bubbleSort(arr) {
   let noSwap;
   for (let i = arr.length; i > 0; i--) {
     noSwap = true;
+    // Last i elements are already in place 
     for (let j = 0; j < i - 1; j++) {
+      // Swap if the element found is greater 
       if (arr[j] > arr[j + 1]) {
         swap(arr, j, j + 1); 
         noSwap = false;
       }
     }
+    // if no two elements were swapped by inner loop, then break 
     if (noSwap) break;
   }
   return arr;
