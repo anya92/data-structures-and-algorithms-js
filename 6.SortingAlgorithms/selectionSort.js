@@ -22,5 +22,5 @@ console.log(selectionSort([3, 1, 4, 8, 11, 2, -3]));
 
 
 /*
-  Time Complexity: O(n^2) -> there are two nested loops
+  Time Complexity (worst, average and best): O(n^2) -> there are two nested loops
 */
