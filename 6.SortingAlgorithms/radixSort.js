@@ -1,6 +1,6 @@
 /*
   Radix Sort
-  - 
+  - digit by digit sort starting from least significant digit to most significant digit
 */
 
 function getDigit(num, i) {
