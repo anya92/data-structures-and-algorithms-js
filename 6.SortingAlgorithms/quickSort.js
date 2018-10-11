@@ -35,3 +35,9 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 
 console.log(quickSort([5, 2, 1, 8, 4, 7, 6, 3]));
+
+/*
+  Time complexity:
+  - best and average: O(n log n)
+  - worst: O(n^2)
+*/
