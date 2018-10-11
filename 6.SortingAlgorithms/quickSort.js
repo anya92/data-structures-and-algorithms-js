@@ -1,4 +1,8 @@
-/* 
+/*
+  Quick Sort
+  - is a Divide and Conquer algorithm
+  - picks an element as pivot and partitions the given array around the picked pivot
+  
   pivot function - takes first element as pivot, places
   the pivot element at its correct position in sorted
   array, and places all smaller to left of pivot 
