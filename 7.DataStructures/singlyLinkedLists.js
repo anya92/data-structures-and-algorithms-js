@@ -82,6 +82,30 @@ class SinglyLinkedList {
     node.value = value;
     return true;
   }
+
+  insert(index, value) { // adding a new node to the Linked List at a specific position
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
+
+    const newNode = new Node(value);
+    let previousNode = this.get(index - 1);
+    newNode.next = previousNode.next;
+    previousNode.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) { // removing a node from the Linked List at a specific position
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === this.length - 1) return !!this.pop();
+    if (index === 0) return !!this.shift();
+    const previousNode = this.get(index - 1);
+    const removedNode = previousNode.next;
+    previousNode.next = removedNode.next;
+    this.length--;
+    return removedNode;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -92,6 +116,9 @@ list.pop();
 list.shift();
 list.unshift(0);
 list.push(14);
-console.log(JSON.stringify(list, null, ' '));
 console.log(list.get(1))
-console.log(list.set(3, 4))
+console.log(list.set(2, 4));
+console.log(list.insert(0, -5));
+list.remove(2);
+console.log(JSON.stringify(list, null, ' '));
+
