@@ -1,3 +1,11 @@
+/*
+  Singly Linked List:
+  - a type of data structure
+  - each node in the list stores the value and a pointer or reference to the next node in the list
+  - difference between Array and Linked List: 
+    https://www.studytonight.com/data-structures/linked-list-vs-array
+*/
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -98,13 +106,27 @@ class SinglyLinkedList {
 
   remove(index) { // removing a node from the Linked List at a specific position
     if (index < 0 || index >= this.length) return undefined;
-    if (index === this.length - 1) return !!this.pop();
-    if (index === 0) return !!this.shift();
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
     const previousNode = this.get(index - 1);
     const removedNode = previousNode.next;
     previousNode.next = removedNode.next;
     this.length--;
     return removedNode;
+  }
+
+  reverse() { // reversing the Linked List
+    let previousNode = null;
+    let nextNode = null;
+    let currentNode = this.head;
+    this.head = this.tail;
+    this.tail = currentNode;
+    while (currentNode !== null) {
+      nextNode = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = nextNode;
+    }
   }
 }
 
@@ -116,9 +138,16 @@ list.pop();
 list.shift();
 list.unshift(0);
 list.push(14);
-console.log(list.get(1))
-console.log(list.set(2, 4));
-console.log(list.insert(0, -5));
+list.get(1);
+list.set(2, 4);
+list.insert(1, -5);
 list.remove(2);
-console.log(JSON.stringify(list, null, ' '));
+list.reverse();
 
+/*
+  Time Complexity:
+  - insertion: O(1)
+  - removal: best -> O(1), worst -> O(n)
+  - searching: O(n)
+  - access: O(n)
+*/
