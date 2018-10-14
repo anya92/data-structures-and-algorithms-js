@@ -1,6 +1,13 @@
 /*
   Doubly Linked List
-  - 
+  - contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list
+  Advantages over singly linked list:
+  - DLL can be traversed in both forward and backward direction
+  - the delete operation in DLL is more efficient if pointer to the node to be deleted is given
+  - we can quickly insert a new node before a given node
+  Disadvantages over singly linked list:
+  - every node of DLL require extra space for an previous pointer
+  - all operations require an extra pointer previous to be maintained
 */
 
 class Node {
@@ -146,3 +153,12 @@ list.get(2);
 list.set(2, 3);
 list.insert(1, -1000);
 console.log(list);
+
+
+/*
+  Time complexity:
+  - adding: O(1)
+  - removing: O(1)
+  - searching: O(n)
+  - accessing: O(n)
+*/
