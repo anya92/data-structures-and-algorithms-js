@@ -74,17 +74,44 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+
+  get(index) { // accessing a node in the Doubly Linked List by its position
+    if (index < 0 || index >= this.length) return null;
+    let i;
+    let currentNode;
+    if (index <= this.length / 2) {
+      i = 0;
+      currentNode = this.head;
+      while (i < index) {
+        currentNode = currentNode.next;
+        i++;
+      }
+    } else {
+      i = this.length - 1;
+      currentNode = this.tail;
+      while (i > index) {
+        currentNode = currentNode.prev;
+        i--;
+      }
+    }
+    return currentNode;
+  }
+
+  set(index, value) { // changing the value of a node based on its position in the Doubly Linked List
+    let node = this.get(index);
+    if (!node) return false;
+    node.value = value;
+    return true;
+  }
 }
 
 let list = new DoublyLinkedList();
 list.push(0);
 list.push(1);
-// console.log(list);
 // list.pop();
-// console.log(list);
 // list.pop();
-console.log(list.shift());
 list.unshift(-2);
-console.log(list);
-
-
+list.unshift(15);
+// console.log(list);
+list.set(2, 3);
+console.log(list.get(2));
