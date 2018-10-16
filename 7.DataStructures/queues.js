@@ -1,14 +1,10 @@
 /*
-  Stack:
-  - a linear data structure which follows a particular order in which the operations are performed:
-    - LIFO (Last In First Out) 
-    - or FILO (First In Last Out)
-  - there are two ways to implement a stack:
-    - using array
-    - using linked list
+  Queue:
+  -  a linear structure which follows a particular order in which the operations are performed -> FIFO (First In First Out)
+  
   Array Implementation:
-  - push() and pop() or
-  - unshift() and shift()
+  - push() and shift()
+  - or unshift() and pop()
 */
 
 // Linked List Implementation
@@ -20,27 +16,26 @@ class Node {
   }
 }
 
-class Stack {
+class Queue {
   constructor() {
     this.first = null;
     this.last = null;
     this.size = 0;
   }
 
-  push(value) { //  adds an item in the stack
+  enqueue(value) { // adds an item to the queue
     const newNode = new Node(value);
     if (this.size === 0) {
       this.first = newNode;
       this.last = newNode;
     } else {
-      const temp = this.first;
-      this.first = newNode;
-      this.first.next = temp;
+      this.last.next = newNode;
+      this.last = newNode;
     }
     return ++this.size;
   }
 
-  pop() { // removes an item from the stack
+  dequeue() { // removes an item from the queue
     if (this.size === 0) return null;
     const temp = this.first;
     if (this.size === 1) {
@@ -54,15 +49,19 @@ class Stack {
   }
 }
 
-let stack = new Stack();
+let queue = new Queue();
 
-stack.push(12);
-stack.push(43);
-stack.push(6);
-console.log(stack)
-stack.pop();
-stack.pop();
-console.log(stack)
+queue.enqueue("First");
+queue.enqueue("Second");
+queue.enqueue("Third");
+
+console.log(queue);
+
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+
+console.log(queue);
 
 /*
   Time complexity:
