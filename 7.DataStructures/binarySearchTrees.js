@@ -72,6 +72,19 @@ class BinarySearchTree {
     }
     return values;
   }
+
+  depthFirstPreorderSearch() {
+    let values = [];
+
+    function traverse(node) {
+      values.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    
+    traverse(this.root);
+    return values;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -83,6 +96,7 @@ tree.insert(11);
 console.log(JSON.stringify(tree));
 console.log(tree.find(4));
 console.log(tree.breadthFirstSearch());
+console.log(tree.depthFirstPreorderSearch());
 
 /** 
   * Time complexity:
