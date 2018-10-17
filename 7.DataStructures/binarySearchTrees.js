@@ -60,6 +60,12 @@ class BinarySearchTree {
     else return this.find(value, currentNode.right);
   }
 
+  /**
+   * Breadth First Search:
+   * - an algorithm for traversing or searching a tree
+   * - starts at the tree root and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level
+  */
+
   breadthFirstSearch() {
     let queue = [];
     let values = [];
@@ -72,6 +78,12 @@ class BinarySearchTree {
     }
     return values;
   }
+
+  /**
+   * Depth First Search:
+   * - an algorithm for traversing or searching a tree
+   * - starts at the root node and explores as far as possible along each branch before backtracking
+  */
 
   depthFirstPreOrderSearch() {
     let values = [];
