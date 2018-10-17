@@ -59,6 +59,19 @@ class BinarySearchTree {
     if (value < currentNode.value) return this.find(value, currentNode.left);
     else return this.find(value, currentNode.right);
   }
+
+  breadthFirstSearch() {
+    let queue = [];
+    let values = [];
+    queue.push(this.root);
+    while (queue.length > 0) {
+      let node = queue.shift();
+      values.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return values;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -67,8 +80,9 @@ tree.insert(4);
 tree.insert(14);
 tree.insert(3);
 tree.insert(11);
-console.log(JSON.stringify(tree))
+console.log(JSON.stringify(tree));
 console.log(tree.find(4));
+console.log(tree.breadthFirstSearch());
 
 /** 
   * Time complexity:
