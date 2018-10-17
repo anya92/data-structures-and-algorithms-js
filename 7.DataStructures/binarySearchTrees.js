@@ -35,6 +35,13 @@ class BinarySearchTree {
       }
     }
   }
+
+  find(value, currentNode = this.root) {
+    if (!currentNode) return null;
+    if (value === currentNode.value) return currentNode;
+    if (value < currentNode.value) return this.find(value, currentNode.left);
+    else return this.find(value, currentNode.right);
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -44,3 +51,4 @@ tree.insert(14);
 tree.insert(3);
 tree.insert(11);
 console.log(JSON.stringify(tree))
+console.log(tree.find(15));
