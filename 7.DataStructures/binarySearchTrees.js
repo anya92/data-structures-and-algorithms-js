@@ -1,3 +1,20 @@
+/**
+  * Trees:
+  * - unlike Arrays, Linked Lists, Stack and Queues, which are linear data structures, trees are hierarchical data structures,
+  * - root - the topmost node,
+  * - children - elements that are directly under an element,
+  * - parent - the element directly above something,
+  * - leaves - elements with no children.
+*/
+
+/** 
+ * Binary Tree - a tree whose elements have at most 2 children (the left and right child).
+ * Binary Search Tree - a node-based binary tree data structure:
+ *  - the left subtree of a node contains only nodes with values lesser than the node’s value,
+ *  - the right subtree of a node contains only nodes with values greater than the node’s value,
+ *  - the left and right subtree each must also be a binary search tree.
+*/
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -36,7 +53,7 @@ class BinarySearchTree {
     }
   }
 
-  find(value, currentNode = this.root) {
+  find(value, currentNode = this.root) { // finding a node in the BST (recursively)
     if (!currentNode) return null;
     if (value === currentNode.value) return currentNode;
     if (value < currentNode.value) return this.find(value, currentNode.left);
@@ -51,4 +68,10 @@ tree.insert(14);
 tree.insert(3);
 tree.insert(11);
 console.log(JSON.stringify(tree))
-console.log(tree.find(15));
+console.log(tree.find(4));
+
+/** 
+  * Time complexity:
+  * - inserting: O(log n)
+  * - searching: O(log n)
+*/
