@@ -1,4 +1,13 @@
-
+/**
+ * Binary Heap:
+ * - a complete tree (all levels are completely filled except possibly the last level and the last level has all keys as left as possible)
+ * - is either Min Heap (parents are smaller than their children) or Max Heap (parents are bigger than their children)
+ * - is suitable to be stored in an array:
+ *  - root element at arr[0],
+ *  - parent node - arr[(i - 1) / 2],
+ *  - left child - arr[2i + 1],
+ *  - right child - arr[2i + 2]
+ */
 class MaxBinaryHeap {
   constructor() {
     this.values = [];
@@ -19,30 +28,31 @@ class MaxBinaryHeap {
     }
   }
 
-  extractMax() {
+  extractMax() { // removes the maximum element of the Binary Heap
     let { values } = this;
     let max = values[0];
     let end = values.pop();
     if (values.length > 0) {
       values[0] = end;
-      this.sinkDown();
+      this.heapify();
     }
     return max;
   }
 
-  sinkDown(parentIndex = 0) {
+  heapify(i = 0) {
     let { values } = this;
-    let leftIndex = 2 * parentIndex + 1,
-        rightIndex = 2 * parentIndex + 2;
-    const element = values[parentIndex], leftItem = values[leftIndex], rightItem = values[rightIndex], length =  values.length;
-    let bigger = null;
-    if (leftIndex < length && leftItem > element) bigger = leftIndex;
-    if (rightIndex < length) {
-      if (bigger === null && rightItem > element || bigger !== null && rightItem > leftItem) bigger = rightIndex;
+    let l = 2 * i + 1,
+        r = 2 * i + 2,
+        { length } = values;
+    let bigger = i;
+    if (l < length && values[l] > values[bigger])
+      bigger = l;
+    if (r < length && values[r] > values[bigger]) {
+      bigger = r;
     }
-    if (bigger !== null) {
-      [values[parentIndex], values[bigger]] = [values[bigger], values[parentIndex]];
-      this.sinkDown(bigger);
+    if (bigger !== i) {
+      [values[i], values[bigger]] = [values[bigger], values[i]];
+      this.heapify(bigger);
     }
   }
 }
@@ -55,10 +65,19 @@ heap.insert(22);
 heap.insert(200);
 console.log(heap);
 console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+
 console.log(heap);
 
 /**
- * Priority Queue
+ * Priority Queue:
+ * - an extension of queue with following properties:
+ *  - every item has a priority associated with it,
+ *  - an element with high priority is dequeued before an element with low priority.
+ * Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list.
  * 
 */
 
@@ -90,31 +109,32 @@ class PriorityQueue { // min binary heap
     }
   }
 
-    dequeue() {
+  dequeue() {
     let { values } = this;
     let min = values[0];
     let end = values.pop();
     if (values.length > 0) {
       values[0] = end;
-      this.sinkUp();
+      this.heapify();
     }
     return min;
   }
 
-  sinkUp(parentIndex = 0) {
+  heapify(i = 0) {
     let { values } = this;
-    let leftIndex = 2 * parentIndex + 1,
-        rightIndex = 2 * parentIndex + 2;
-    const element = values[parentIndex], leftItem = values[leftIndex], rightItem = values[rightIndex], length = values.length;
-    let smaller = null;
-    if (leftIndex < length && leftItem.priority < element.priority) smaller = leftIndex;
-    if (rightIndex < length) {
-      if (smaller === null && rightItem.priority < element.priority ||
-        smaller !== null && rightItem.priority < leftItem.priority) smaller = rightIndex;
-    } 
-    if (smaller !== null) {
-      [values[parentIndex], values[smaller]] = [values[smaller], values[parentIndex]];
-      this.sinkUp(smaller);
+    let l = 2 * i + 1,
+        r = 2 * i + 2,
+        { length } = values;
+    let smaller = i;
+    if (l < length && values[l].priority < values[smaller].priority) {
+      smaller = l;
+    }
+    if (r < length && values[r].priority < values[smaller].priority) {
+      smaller = r;
+    }
+    if (smaller !== i) {
+      [values[i], values[smaller]] = [values[smaller], values[i]];
+      this.heapify(smaller);
     }
   }
 }
@@ -131,3 +151,11 @@ console.log(pq.dequeue());
 console.log(pq.dequeue());
 console.log(pq.dequeue());
 console.log(pq.dequeue());
+
+
+/**
+ * Time complexity:
+ * - insertion: O(log n),
+ * - removal: O(log n),
+ * - search: O(n)
+ */
